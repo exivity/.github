@@ -1,0 +1,84 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+      DB_BRANCH: develop
+      TESTBENCH_BRANCH: master
+      BUNNY_BRANCH: master
+  
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.15"
+
+      - uses: exivity/actions/init-ssh@master
+        with:
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - uses: exivity/actions/rabbitmq@master
+
+      - uses: exivity/actions/db@master
+        with:
+          branch: ${{ env.DB_BRANCH }}
+
+      - uses: exivity/actions/get-artefacts@master
+        with:
+          component: testbench
+          branch: ${{ env.TESTBENCH_BRANCH }}
+          use-platform-prefix: true
+
+      - uses: exivity/actions/get-artefacts@master
+        with:
+          component: bunny
+          branch: ${{ env.BUNNY_BRANCH }}
+          use-platform-prefix: true
+          prefix: tools
+
+      - name: build
+        run: |
+          mkdir build
+          go build -o build/
+          cp THIRD_PARTY_LICENSES.md build
+
+      - name: test
+        run: bash run-tests.sh
+        working-directory: tests
+        env:
+          EXIVITY_HOME_PATH: ${{ github.workspace }}/tests/home
+          EXIVITY_PROGRAM_PATH: ${{ github.workspace }}/tests/programs
+
+      - uses: exivity/actions/put-artefacts@master
+        with:
+          use-platform-prefix: true
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.os }}
+          path: build
+
+  notify:
+    needs: build
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ needs.build.result }}
+          fields: repo,ref,message,workflow,author
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_BUILDS}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
