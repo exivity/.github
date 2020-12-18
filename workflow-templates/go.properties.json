@@ -1,0 +1,8 @@
+{
+    "name": "Go build workflow",
+    "description": "Exivity build workflow for Go components",
+    "iconName": "go",
+    "categories": [
+        "Go"
+    ]
+}
