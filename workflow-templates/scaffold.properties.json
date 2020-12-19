@@ -2,5 +2,5 @@
   "name": "Scaffold deployment",
   "descriptions": "Deploy to scaffold for acceptance testing",
   "iconName": "scaffold",
-  "categories": ["TypeScript", "JavaScript", "C", "Go", "Shell"]
+  "categories": ["TypeScript", "JavaScript", "C", "Go", "PHP", "Shell"]
 }
