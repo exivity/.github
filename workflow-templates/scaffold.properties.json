@@ -1,0 +1,5 @@
+{
+  "name": "Scaffold deployment",
+  "descriptions": "Deploy to scaffold for acceptance testing",
+  "iconName": "scaffold"
+}

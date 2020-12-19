@@ -1,0 +1,20 @@
+name: Scaffold Deployment
+
+on:
+  pull_request:
+    types: [review_requested]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  SCAFFOLD_BRANCH: feat/accept-on-review
+
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: trigger scaffold
+      if: github.event.pull_request.requested_reviewer.id == 53756225
+      uses: exivity/actions/accept@master
+      with:
+        scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
