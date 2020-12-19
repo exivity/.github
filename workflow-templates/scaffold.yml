@@ -14,7 +14,14 @@ jobs:
 
     steps:
     - name: trigger scaffold
-      if: github.event.pull_request.requested_reviewer.id == 53756225
-      uses: exivity/actions/accept@master
+      if: contains(github.event.pull_request.requested_reviewers.*.id, 53756225)
+      uses: exivity/actions/accept@feat/accept-on-review
       with:
         scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
+    
+    - name: request changes
+      if: failure()
+      uses: exivity/actions/bot-review@feat/accept-on-review
+      with:
+        event: REQUEST_CHANGES
+        body: failed to trigger scaffold
