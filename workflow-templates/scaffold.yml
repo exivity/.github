@@ -3,10 +3,14 @@ name: Scaffold Deployment
 on:
   pull_request:
     types: [review_requested]
+  check_run:
+    types: [completed]
+  push:
+    branches: [develop]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-  SCAFFOLD_BRANCH: feat/accept-on-review
+  SCAFFOLD_BRANCH: develop
 
 jobs:
   accept:
@@ -14,14 +18,15 @@ jobs:
 
     steps:
     - name: trigger scaffold
-      if: contains(github.event.pull_request.requested_reviewers.*.id, 53756225)
-      uses: exivity/actions/accept@feat/accept-on-review
+      if: github.event_name == 'pull_request' || github.event_name == 'check_run'
+      uses: exivity/actions/accept
       with:
+        mode: bot-review
         scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
-    
-    - name: request changes
-      if: failure()
-      uses: exivity/actions/bot-review@feat/accept-on-review
+    - name: trigger scaffold for develop
+      if: github.event_name == 'push'
+      uses: exivity/actions/accept
       with:
-        event: REQUEST_CHANGES
-        body: failed to trigger scaffold
+        mode: always
+        scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
+
