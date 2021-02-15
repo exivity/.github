@@ -8,25 +8,13 @@ on:
   push:
     branches: [develop]
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-  SCAFFOLD_BRANCH: develop
-
 jobs:
   accept:
     runs-on: ubuntu-latest
 
     steps:
     - name: trigger scaffold
-      if: github.event_name == 'pull_request' || github.event_name == 'check_run'
       uses: exivity/actions/accept
       with:
-        mode: bot-review
-        scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
-    - name: trigger scaffold for develop
-      if: github.event_name == 'push'
-      uses: exivity/actions/accept
-      with:
-        mode: always
-        scaffold-branch: ${{ env.SCAFFOLD_BRANCH }}
+        need-check: build
 
