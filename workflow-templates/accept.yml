@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: trigger scaffold
-      uses: exivity/actions/accept
+      uses: exivity/actions/accept@master
       with:
         need-check: build
 
