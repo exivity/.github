@@ -1,0 +1,20 @@
+name: accept
+
+on:
+  pull_request:
+    types: [review_requested]
+  check_run:
+    types: [completed]
+  push:
+    branches: [develop]
+
+jobs:
+  accept:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: trigger scaffold
+      uses: exivity/actions/accept
+      with:
+        need-check: build
+

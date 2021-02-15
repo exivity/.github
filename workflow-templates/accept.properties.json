@@ -1,0 +1,13 @@
+{
+  "name": "Acceptance tests",
+  "descriptions": "Trigger acceptance tests on scaffold repository",
+  "iconName": "accept",
+  "categories": [
+    "TypeScript",
+    "JavaScript",
+    "C",
+    "Go",
+    "PHP",
+    "Shell"
+  ]
+}
