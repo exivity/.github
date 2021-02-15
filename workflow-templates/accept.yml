@@ -17,4 +17,6 @@ jobs:
       uses: exivity/actions/accept@master
       with:
         need-check: build
+        gh-token: ${{ secrets.GH_BOT_TOKEN }}
+
 
