@@ -1,4 +1,4 @@
-name: Scaffold Deployment
+name: accept
 
 on:
   pull_request:
