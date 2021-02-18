@@ -5,6 +5,7 @@ on:
     types: [review_requested]
   check_run:
     types: [completed]
+  status:
   push:
     branches: [develop]
 
