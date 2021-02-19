@@ -31,7 +31,7 @@ workflow:_
 
 ```
   workflow_run:
-    workflows: ['Build CI']
+    workflows: ['test & build']
 ```
 
 **Run on each commit**  
@@ -39,7 +39,7 @@ This is the most straight-forward approach and you can include the action in
 your build workflow:
 
 ```
-name: build
+name: test & build
 on: push
 jobs:
   build:
