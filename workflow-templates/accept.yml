@@ -3,20 +3,16 @@ name: accept
 on:
   pull_request:
     types: [review_requested]
-  check_run:
+  workflow_run:
+    workflows: [build]
     types: [completed]
-  push:
-    branches: [develop]
 
 jobs:
   accept:
     runs-on: ubuntu-latest
-
     steps:
-    - name: trigger scaffold
-      uses: exivity/actions/accept@master
+    - uses: exivity/actions/accept@master
       with:
-        need-check: build
         gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
 
