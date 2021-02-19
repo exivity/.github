@@ -46,6 +46,8 @@ jobs:
     steps:
       # ...
       - uses: exivity/actions/accept@master
+        with:
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
 ```
 
 This is not very efficient, however, as the acceptance tests take ~30mins to
