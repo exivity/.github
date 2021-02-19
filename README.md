@@ -25,12 +25,13 @@ It requires a separate _accept_ workflow. See example workflow in
 [workflow-templates/accept.yml](https://github.com/exivity/.github/blob/main/workflow-templates/accept.yml)
 
 _Note: because it runs as a separate workflow, we need to specify the workflow
-where artefacts are generated. In the workflow, change the value of_ build _if
-your artefacts are generated in a different workflow:_
+where artefacts are generated. In the_ accept _workflow, set the value of 
+`on.workflow_run.workflows` to the workflow_ name _(!) of the artefact-generating
+workflow:_
 
 ```
   workflow_run:
-    workflows: [build]
+    workflows: ['Build CI']
 ```
 
 **Run on each commit**  
