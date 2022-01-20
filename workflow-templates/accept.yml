@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [review_requested]
   workflow_run:
-    workflows: ['Build CI']
+    workflows: ['build']
     types: [completed]
 
 jobs:
