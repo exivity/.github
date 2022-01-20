@@ -27,11 +27,12 @@ It requires a separate _accept_ workflow. See example workflow in
 _Note: because it runs as a separate workflow, we need to specify the workflow
 where artefacts are generated. In the_ accept _workflow, set the value of 
 `on.workflow_run.workflows` to the workflow_ name _(!) of the artefact-generating
-workflow:_
+workflow. Due to a GitHub limitation, also make sure the_ job _in the build
+workflow has the same name to prevent problems with detecting the workflow status._
 
 ```
   workflow_run:
-    workflows: ['test & build']
+    workflows: ['build']
 ```
 
 **Run on each commit**  
@@ -39,7 +40,7 @@ This is the most straight-forward approach and you can include the action in
 your build workflow:
 
 ```
-name: test & build
+name: build
 on: push
 jobs:
   build:
