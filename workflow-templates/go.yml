@@ -5,9 +5,6 @@ on: [push]
 jobs:
   build:
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
       DB_BRANCH: develop
       TESTBENCH_BRANCH: master
       BUNNY_BRANCH: master
@@ -34,12 +31,18 @@ jobs:
       - uses: exivity/actions/db@master
         with:
           branch: ${{ env.DB_BRANCH }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: exivity/actions/get-artefacts@master
         with:
           component: testbench
           branch: ${{ env.TESTBENCH_BRANCH }}
           use-platform-prefix: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: exivity/actions/get-artefacts@master
         with:
@@ -47,12 +50,20 @@ jobs:
           branch: ${{ env.BUNNY_BRANCH }}
           use-platform-prefix: true
           prefix: tools
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: build
-        run: |
-          mkdir build
-          go build -o build/
-          cp THIRD_PARTY_LICENSES.md build
+        run: go build -o build/
+          
+      - uses: exivity/actions/process-binary@main
+        with:
+          path: build/*
+          certificate-base64: ${{ secrets.CODESIGN_CERTIFICATE_BASE64 }}
+          certificate-password: ${{ secrets.CODESIGN_CERTIFICATE_PASSWORD }}
+          virustotal-api-key: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: test
         run: bash run-tests.sh
@@ -60,10 +71,15 @@ jobs:
         env:
           EXIVITY_HOME_PATH: ${{ github.workspace }}/tests/home
           EXIVITY_PROGRAM_PATH: ${{ github.workspace }}/tests/programs
+          
+      - name: copy static files
+        run: cp THIRD_PARTY_LICENSES.md build
 
       - uses: exivity/actions/put-artefacts@master
         with:
           use-platform-prefix: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - uses: actions/upload-artifact@v2
         with:
