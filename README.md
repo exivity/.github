@@ -41,7 +41,7 @@ to using this action:
 This is the recommended approach. The acceptance tests will run under these
 conditions:
 - If commit is part of a pull requests, require review request from 
-  [@exivity-bot](github.com/exivity-bot)
+  [@exivity-bot](https://github.com/exivity-bot)
 - If commit is not on the `master` or `main` branch
 
 In practice, we run the tests on the `develop` branch (if there is one) and in
