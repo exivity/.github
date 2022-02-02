@@ -2,9 +2,27 @@
 
 GitHub defaults
 
+## Settings sync
+
+Repositories in the Exivity organisation can use the
+[Settings GitHub App](https://github.com/apps/settings) to sync with the default
+repository settings for Exivity. To do so, create a file `.github/settings.yml`
+with these contents:
+
+```yaml
+_extends: exivity/.github
+
+# optional overrides
+```
+
 ## Workflow templates
 
-### `accept`
+### [`build`](https://github.com/exivity/.github/blob/main/workflow-templates/go.yml)
+
+Example build workflow for Go repositories. Modify where needed to support repositories
+in different languages.
+
+### [`accept`](https://github.com/exivity/.github/blob/main/workflow-templates/accept.yml)
 
 In order to run the acceptance tests (on scaffold) before merging changes to the
 development/release branches, we can use the [accept action from the actions
@@ -30,7 +48,7 @@ where artefacts are generated. In the_ accept _workflow, set the value of
 workflow. Due to a GitHub limitation, also make sure the_ job _in the build
 workflow has the same name to prevent problems with detecting the workflow status._
 
-```
+```yaml
   workflow_run:
     workflows: ['build']
 ```
@@ -39,14 +57,14 @@ workflow has the same name to prevent problems with detecting the workflow statu
 This is the most straight-forward approach and you can include the action in
 your build workflow:
 
-```
+```yaml
 name: build
 on: push
 jobs:
   build:
     steps:
       # ...
-      - uses: exivity/actions/accept@master
+      - uses: exivity/actions/accept@main
         with:
           gh-token: ${{ secrets.GH_BOT_TOKEN }}
 ```
@@ -55,3 +73,7 @@ This is not very efficient, however, as the acceptance tests take ~30mins to
 complete and if you push a lot of commits, you might want some more control over
 when the tests run. This is also the expensive option as the platform running
 the tests is a metered service.
+
+### [`virustotal-check`](https://github.com/exivity/.github/blob/main/workflow-templates/virustotal-check.yml)
+
+VirusTotal check workflow for the [virustotal](https://github.com/exivity/actions#virustotal) action.
