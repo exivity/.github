@@ -1,8 +1,13 @@
 # .github
 
-GitHub defaults
+Exivity meta repository for GitHub settings
 
-## Settings sync
+## Organization profile
+
+The `profile/README.md` will appear on the
+[organization's profile](https://github.com/exivity).
+
+## Repository settings sync
 
 Repositories in the Exivity organisation can use the
 [Settings GitHub App](https://github.com/apps/settings) to sync with the default
