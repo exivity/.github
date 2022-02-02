@@ -1,0 +1,59 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+repository:
+  # See https://docs.github.com/en/rest/reference/repos#update-a-repository for all available settings.
+
+  # Either `true` to enable issues for this repository, `false` to disable them.
+  has_issues: true
+
+  # Either `true` to enable projects for this repository, or `false` to disable them.
+  # If projects are disabled for the organization, passing `true` will cause an API error.
+  has_projects: true
+
+  # Either `true` to enable the wiki for this repository, `false` to disable it.
+  has_wiki: false
+
+  # Updates the default branch for this repository.
+  default_branch: main
+
+  # Either `true` to allow squash-merging pull requests, or `false` to prevent
+  # squash-merging.
+  allow_squash_merge: true
+
+  # Either `true` to allow merging pull requests with a merge commit, or `false`
+  # to prevent merging pull requests with merge commits.
+  allow_merge_commit: false
+
+  # Either `true` to allow rebase-merging pull requests, or `false` to prevent
+  # rebase-merging.
+  allow_rebase_merge: false
+
+  # Either `true` to enable automatic deletion of branches on merge, or `false` to disable
+  delete_branch_on_merge: true
+
+  # Either `true` to enable automated security fixes, or `false` to disable
+  # automated security fixes.
+  enable_automated_security_fixes: true
+
+  # Either `true` to enable vulnerability alerts, or `false` to disable
+  # vulnerability alerts.
+  enable_vulnerability_alerts: true
+
+# Labels: define labels for Issues and Pull Requests
+labels:
+  - name: feature
+    color: '#0E8A16'
+    description: Adds functionality for end-users
+    
+  - name: bug
+    color: '#D93F0B'
+    description: Undesired or defective behaviour
+
+  - name: chore
+    color: '#1D76DB'
+    description: Doesn't affect functionality
+
+# See https://docs.github.com/en/rest/reference/teams#add-or-update-team-repository-permissions for available options
+teams:
+  - name: developers
+    permission: push
