@@ -22,6 +22,9 @@ _extends: exivity/.github
 
 ## Workflow templates
 
+To add one of these example workflows to a repository: go to the _Actions_ tab, then
+click on the _New workflow_ button and scroll down the _By Exivity_ section.
+
 ### [`build`](https://github.com/exivity/.github/blob/main/workflow-templates/go.yml)
 
 Example build workflow for Go repositories. Modify where needed to support repositories
