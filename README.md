@@ -11,14 +11,18 @@ The `profile/README.md` will appear on the
 
 Repositories in the Exivity organisation can use the
 [Settings GitHub App](https://github.com/apps/settings) to sync with the default
-repository settings for Exivity. To do so, create a file `.github/settings.yml`
-with these contents:
+repository settings for Exivity. To do so, grant the GitHub App access to your
+repository and create a file `.github/settings.yml` with these contents:
 
 ```yaml
 _extends: exivity/.github
 
 # optional overrides
 ```
+
+This will apply the settings from
+[our defaults](https://github.com/exivity/.github/blob/main/.github/settings.yml)
+which you can optionally override.
 
 ## Workflow templates
 
