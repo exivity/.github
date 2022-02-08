@@ -11,7 +11,7 @@ jobs:
   accept:
     runs-on: ubuntu-latest
     steps:
-    - uses: exivity/actions/accept@master
+    - uses: exivity/actions/accept@main
       with:
         gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
