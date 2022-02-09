@@ -33,7 +33,7 @@ jobs:
           branch: ${{ env.DB_BRANCH }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
       - uses: exivity/actions/get-artefacts@master
         with:
@@ -42,7 +42,7 @@ jobs:
           use-platform-prefix: true
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
       - uses: exivity/actions/get-artefacts@master
         with:
@@ -52,7 +52,7 @@ jobs:
           prefix: tools
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
       - name: build
         run: go build -o build/
