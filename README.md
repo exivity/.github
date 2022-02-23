@@ -89,3 +89,7 @@ the tests is a metered service.
 ### [`virustotal-check`](https://github.com/exivity/.github/blob/main/workflow-templates/virustotal-check.yml)
 
 VirusTotal check workflow for the [virustotal](https://github.com/exivity/actions#virustotal) action.
+
+### [`semantic-pull-request`](https://github.com/exivity/.github/blob/main/workflow-templates/semantic-pull-request.yml)
+
+Workflow to check for semantic PR titles using the [semantic-pull-request](https://github.com/exivity/actions#semantic-pull-request) action.
