@@ -20,22 +20,22 @@ jobs:
 
       - uses: actions/setup-go@v2
         with:
-          go-version: "1.15"
+          go-version: "1.17"
 
-      - uses: exivity/actions/init-ssh@master
+      - uses: exivity/actions/init-ssh@main
         with:
           private-key: ${{ secrets.PRIVATE_KEY }}
 
-      - uses: exivity/actions/rabbitmq@master
+      - uses: exivity/actions/rabbitmq@main
 
-      - uses: exivity/actions/db@master
+      - uses: exivity/actions/db@main
         with:
           branch: ${{ env.DB_BRANCH }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
-      - uses: exivity/actions/get-artefacts@master
+      - uses: exivity/actions/get-artefacts@main
         with:
           component: testbench
           branch: ${{ env.TESTBENCH_BRANCH }}
@@ -44,7 +44,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           gh-token: ${{ secrets.GH_BOT_TOKEN }}
 
-      - uses: exivity/actions/get-artefacts@master
+      - uses: exivity/actions/get-artefacts@main
         with:
           component: bunny
           branch: ${{ env.BUNNY_BRANCH }}
@@ -75,7 +75,7 @@ jobs:
       - name: copy static files
         run: cp THIRD_PARTY_LICENSES.md build
 
-      - uses: exivity/actions/put-artefacts@master
+      - uses: exivity/actions/put-artefacts@main
         with:
           use-platform-prefix: true
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -85,16 +85,10 @@ jobs:
         with:
           name: ${{ matrix.os }}
           path: build
-
-  notify:
-    needs: build
-    if: failure()
-    runs-on: ubuntu-latest
-    steps:
-      - uses: 8398a7/action-slack@v3
+          
+      - uses: exivity/actions/slack@main
+        if: failure()
         with:
-          status: ${{ needs.build.result }}
-          fields: repo,ref,message,workflow,author
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_BUILDS}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          slack-api-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
