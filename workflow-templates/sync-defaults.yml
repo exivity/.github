@@ -1,0 +1,17 @@
+name: virustotal-check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/settings.yml']
+  schedule:
+    - cron: '55 2 * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: exivity/actions/sync-defaults@main
+        with:
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
