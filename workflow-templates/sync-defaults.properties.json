@@ -1,0 +1,13 @@
+{
+  "name": "Sync defaults workflow",
+  "descriptions": "Sync repository settings with the default settings for Exivity",
+  "iconName": "sync",
+  "categories": [
+    "TypeScript",
+    "JavaScript",
+    "C",
+    "Go",
+    "PHP",
+    "Shell"
+  ]
+}
