@@ -1,4 +1,4 @@
-name: virustotal-check
+name: sync-defaults
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
     - cron: '55 2 * * *'
 
 jobs:
-  check:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: exivity/actions/sync-defaults@main
