@@ -61,3 +61,5 @@ labels:
 teams:
   - name: developers
     permission: push
+  - name: devops
+    permission: maintain
