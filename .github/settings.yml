@@ -63,3 +63,5 @@ teams:
     permission: push
   - name: devops
     permission: maintain
+  - name: admins
+    permission: admin
