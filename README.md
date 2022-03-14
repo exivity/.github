@@ -7,23 +7,6 @@ Exivity meta repository for GitHub settings
 The `profile/README.md` will appear on the
 [organization's profile](https://github.com/exivity).
 
-## Repository settings sync
-
-Repositories in the Exivity organisation can use the
-[Settings GitHub App](https://github.com/apps/settings) to sync with the default
-repository settings for Exivity. To do so, grant the GitHub App access to your
-repository and create a file `.github/settings.yml` with these contents:
-
-```yaml
-_extends: exivity/.github
-
-# optional overrides
-```
-
-This will apply the settings from
-[our defaults](https://github.com/exivity/.github/blob/main/.github/settings.yml)
-which you can optionally override.
-
 ## Workflow templates
 
 To add one of these example workflows to a repository: go to the _Actions_ tab, then
@@ -93,3 +76,11 @@ VirusTotal check workflow for the [virustotal](https://github.com/exivity/action
 ### [`semantic-pull-request`](https://github.com/exivity/.github/blob/main/workflow-templates/semantic-pull-request.yml)
 
 Workflow to check for semantic PR titles using the [semantic-pull-request](https://github.com/exivity/actions#semantic-pull-request) action.
+
+### [`sync-defaults`](https://github.com/exivity/.github/blob/main/workflow-templates/sync-defaults.yml)
+
+Repositories in the Exivity organisation can use the
+[sync-defaults](https://github.com/exivity/actions#sync-defaults) action to sync
+repository settings with the [default settings for Exivity](https://github.com/exivity/.github/blob/main/.github/settings.yml).
+Setup this workflow to sync periodically and when making changes to the local
+overrides file `.github/settings.yml`.
