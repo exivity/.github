@@ -1,6 +1,6 @@
 {
   "name": "Purge GHCR.io",
-  "descriptions": "Delete a package version from GitHub Container Registry if a branch or tag is deleted.",
+  "description": "Delete a package version from GitHub Container Registry if a branch or tag is deleted.",
   "iconName": "purge",
   "categories": [
     "TypeScript",
