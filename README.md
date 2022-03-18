@@ -77,6 +77,10 @@ VirusTotal check workflow for the [virustotal](https://github.com/exivity/action
 
 Workflow to check for semantic PR titles using the [semantic-pull-request](https://github.com/exivity/actions#semantic-pull-request) action.
 
+### [`delete-package`](https://github.com/exivity/.github/blob/main/workflow-templates/delete-package.yml)
+
+Purge the GitHub Container Registry when a branch or tag is deleted.
+
 ### [`sync-defaults`](https://github.com/exivity/.github/blob/main/workflow-templates/sync-defaults.yml)
 
 Repositories in the Exivity organisation can use the
