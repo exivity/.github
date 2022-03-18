@@ -1,0 +1,11 @@
+name: purge-ghcr
+
+on: delete
+
+jobs:
+  purge-ghcr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: exivity/actions/purge-ghcr@main
+        with:
+          gh-token: ${{ secrets.GH_BOT_TOKEN }}
