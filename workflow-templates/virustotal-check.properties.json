@@ -1,6 +1,6 @@
 {
   "name": "VirusTotal check workflow",
-  "descriptions": "Checks the status of pending VirusTotal checks",
+  "description": "Checks the status of pending VirusTotal checks",
   "iconName": "virustotal-logo",
   "categories": [
     "TypeScript",
