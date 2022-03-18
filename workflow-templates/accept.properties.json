@@ -1,6 +1,6 @@
 {
   "name": "Acceptance tests",
-  "descriptions": "Trigger acceptance tests on scaffold repository",
+  "description": "Trigger acceptance tests on scaffold repository",
   "iconName": "accept",
   "categories": [
     "TypeScript",
