@@ -13,4 +13,3 @@ jobs:
         with:
           mode: check
           virustotal-api-key: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
