@@ -1,6 +1,6 @@
 {
   "name": "Semantic pull request workflow",
-  "descriptions": "Workflow to check for semantic PR titles using the semantic-pull-request action.",
+  "description": "Workflow to check for semantic PR titles using the semantic-pull-request action.",
   "iconName": "git-logo",
   "categories": [
     "TypeScript",
