@@ -67,7 +67,6 @@ jobs:
           certificate-base64: ${{ secrets.CODESIGN_CERTIFICATE_BASE64 }}
           certificate-password: ${{ secrets.CODESIGN_CERTIFICATE_PASSWORD }}
           virustotal-api-key: ${{ secrets.VIRUSTOTAL_API_KEY }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: test
         run: bash run-tests.sh
@@ -95,4 +94,3 @@ jobs:
         with:
           status: ${{ job.status }}
           slack-api-token: ${{ secrets.SLACK_BOT_TOKEN }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
