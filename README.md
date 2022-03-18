@@ -80,6 +80,7 @@ Workflow to check for semantic PR titles using the [semantic-pull-request](https
 ### [`purge-ghcr`](https://github.com/exivity/.github/blob/main/workflow-templates/purge-ghcr.yml)
 
 Purge the GitHub Container Registry when a branch or tag is deleted.
+Uses the [purge-ghcr](https://github.com/exivity/actions#purge-ghcr) action.
 
 ### [`sync-defaults`](https://github.com/exivity/.github/blob/main/workflow-templates/sync-defaults.yml)
 
